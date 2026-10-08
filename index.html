@@ -3,152 +3,527 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Teacher Danyeal - Payment Methods</title>
+
+<title>Teacher Management Portal - Payment Methods</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{
+  box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #222;
+html{
+  scroll-behavior:smooth;
 }
 
-.header {
-  background: #2563eb;
-  color: white;
-  text-align: center;
-  padding: 35px 20px;
+body{
+  margin:0;
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background:#f5f7fb;
+  color:#172033;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 30px;
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  background:linear-gradient(135deg,#1e40af,#2563eb,#3b82f6);
+  color:white;
+  padding:48px 20px 65px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
 }
 
-.header p {
-  margin: 10px 0 0;
-  font-size: 16px;
+.header::before,
+.header::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
 }
 
-.container {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 0 20px;
+.header::before{
+  width:260px;
+  height:260px;
+  top:-120px;
+  left:-80px;
 }
 
-.price-box {
-  background: white;
-  border-radius: 16px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  margin-bottom: 25px;
+.header::after{
+  width:330px;
+  height:330px;
+  bottom:-220px;
+  right:-90px;
 }
 
-.price-box h2 {
-  margin: 0;
-  font-size: 28px;
-  color: #2563eb;
+.header-content{
+  position:relative;
+  z-index:2;
+  max-width:850px;
+  margin:auto;
 }
 
-.price-box p {
-  margin-bottom: 0;
+.portal-icon{
+  width:62px;
+  height:62px;
+  margin:0 auto 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  backdrop-filter:blur(10px);
 }
 
-.payment-card {
-  background: white;
-  border-radius: 16px;
-  padding: 22px;
-  margin-bottom: 18px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+.header h1{
+  margin:0;
+  font-size:34px;
+  font-weight:800;
+  letter-spacing:-.5px;
 }
 
-.payment-card h3 {
-  margin-top: 0;
-  font-size: 21px;
+.header p{
+  margin:12px 0 0;
+  font-size:16px;
+  opacity:.92;
 }
 
-.qr-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
+/* =========================
+   MAIN
+========================= */
+
+.container{
+  max-width:1000px;
+  margin:-30px auto 50px;
+  padding:0 20px;
+  position:relative;
+  z-index:5;
 }
 
-button {
-  width: 100%;
-  padding: 13px;
-  border: none;
-  border-radius: 10px;
-  background: #2563eb;
-  color: white;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
+/* =========================
+   PRICE CARD
+========================= */
+
+.price-card{
+  background:white;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 12px 35px rgba(15,23,42,.10);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+  margin-bottom:24px;
+  border:1px solid #e8edf5;
 }
 
-button:hover {
-  opacity: 0.9;
+.price-left{
+  display:flex;
+  align-items:center;
+  gap:17px;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+.price-icon{
+  width:55px;
+  height:55px;
+  border-radius:15px;
+  background:#eff6ff;
+  color:#2563eb;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
 }
 
-.modal-content {
-  background: white;
-  width: 100%;
-  max-width: 430px;
-  border-radius: 18px;
-  padding: 25px;
-  text-align: center;
-  position: relative;
+.price-text h2{
+  margin:0;
+  font-size:25px;
 }
 
-.close {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  font-size: 30px;
-  cursor: pointer;
+.price-text p{
+  margin:6px 0 0;
+  color:#687386;
+  font-size:14px;
 }
 
-.modal-content h2 {
-  margin-top: 5px;
+.price{
+  font-size:30px;
+  font-weight:800;
+  color:#2563eb;
+  white-space:nowrap;
 }
 
-.modal-content img {
-  width: 100%;
-  max-width: 330px;
-  max-height: 430px;
-  object-fit: contain;
-  margin-top: 10px;
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-heading{
+  margin:32px 0 15px;
 }
 
-.footer {
-  text-align: center;
-  padding: 25px;
-  color: #666;
-  font-size: 14px;
+.section-heading h2{
+  margin:0;
+  font-size:22px;
 }
 
-@media (max-width: 500px) {
-  .header h1 {
-    font-size: 25px;
+.section-heading p{
+  margin:6px 0 0;
+  color:#6b7280;
+  font-size:14px;
+}
+
+/* =========================
+   PAYMENT CARDS
+========================= */
+
+.payment-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.payment-card{
+  background:white;
+  border:1px solid #e6eaf1;
+  border-radius:20px;
+  padding:23px;
+  box-shadow:0 7px 25px rgba(15,23,42,.06);
+  transition:.2s ease;
+}
+
+.payment-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(15,23,42,.10);
+}
+
+.payment-top{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:20px;
+}
+
+.payment-logo{
+  width:50px;
+  height:50px;
+  border-radius:14px;
+  background:#f1f5f9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+
+.payment-info h3{
+  margin:0;
+  font-size:18px;
+}
+
+.payment-info span{
+  display:block;
+  margin-top:4px;
+  font-size:13px;
+  color:#7a8495;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.view-btn{
+  width:100%;
+  border:none;
+  border-radius:11px;
+  padding:13px 16px;
+  background:#2563eb;
+  color:white;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.view-btn:hover{
+  background:#1d4ed8;
+  transform:translateY(-1px);
+}
+
+.view-btn:active{
+  transform:scale(.98);
+}
+
+/* =========================
+   BANK SECTION
+========================= */
+
+.bank-card{
+  background:white;
+  border:1px solid #e6eaf1;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 7px 25px rgba(15,23,42,.06);
+}
+
+.bank-header{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:22px;
+}
+
+.bank-icon{
+  width:52px;
+  height:52px;
+  border-radius:15px;
+  background:#eff6ff;
+  color:#2563eb;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:23px;
+}
+
+.bank-header h3{
+  margin:0;
+  font-size:19px;
+}
+
+.bank-header p{
+  margin:5px 0 0;
+  color:#7a8495;
+  font-size:13px;
+}
+
+.bank-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+
+.bank-btn{
+  border:1px solid #e2e8f0;
+  background:#f8fafc;
+  border-radius:12px;
+  padding:15px 8px;
+  cursor:pointer;
+  font-weight:700;
+  color:#263247;
+  transition:.2s ease;
+}
+
+.bank-btn:hover{
+  background:#eff6ff;
+  border-color:#93c5fd;
+  color:#1d4ed8;
+  transform:translateY(-2px);
+}
+
+/* =========================
+   INFO BOX
+========================= */
+
+.info-box{
+  margin-top:24px;
+  background:#eff6ff;
+  border:1px solid #dbeafe;
+  border-radius:18px;
+  padding:18px 20px;
+  display:flex;
+  gap:13px;
+  align-items:flex-start;
+}
+
+.info-icon{
+  font-size:19px;
+}
+
+.info-box strong{
+  display:block;
+  margin-bottom:4px;
+  font-size:14px;
+}
+
+.info-box p{
+  margin:0;
+  font-size:13px;
+  color:#64748b;
+  line-height:1.5;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  text-align:center;
+  padding:30px 20px 40px;
+  color:#8992a3;
+  font-size:13px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  z-index:9999;
+  inset:0;
+  background:rgba(15,23,42,.72);
+  backdrop-filter:blur(5px);
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-content{
+  width:100%;
+  max-width:460px;
+  background:white;
+  border-radius:24px;
+  padding:27px;
+  position:relative;
+  text-align:center;
+  box-shadow:0 25px 70px rgba(0,0,0,.25);
+  animation:modalIn .18s ease;
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:translateY(10px) scale(.98);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.close{
+  position:absolute;
+  right:17px;
+  top:12px;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+  color:#64748b;
+  cursor:pointer;
+  background:#f1f5f9;
+  transition:.2s;
+}
+
+.close:hover{
+  background:#e2e8f0;
+  color:#111827;
+}
+
+.modal-label{
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.2px;
+  color:#2563eb;
+  margin-top:3px;
+  margin-bottom:7px;
+}
+
+.modal-content h2{
+  margin:0;
+  font-size:23px;
+}
+
+.modal-subtitle{
+  margin:7px 0 18px;
+  color:#7a8495;
+  font-size:13px;
+}
+
+.qr-wrapper{
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal-content img{
+  display:block;
+  width:auto;
+  max-width:100%;
+  max-height:430px;
+  object-fit:contain;
+  border-radius:8px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+  .header{
+    padding:38px 18px 58px;
   }
 
-  .container {
-    padding: 0 12px;
+  .header h1{
+    font-size:27px;
+  }
+
+  .container{
+    padding:0 13px;
+  }
+
+  .price-card{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .price{
+    font-size:28px;
+  }
+
+  .payment-grid{
+    grid-template-columns:1fr;
+  }
+
+  .bank-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:400px){
+
+  .header h1{
+    font-size:24px;
+  }
+
+  .price-left{
+    align-items:flex-start;
+  }
+
+  .price-icon{
+    flex-shrink:0;
+  }
+
+  .bank-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .modal-content{
+    padding:23px 17px;
   }
 }
 </style>
@@ -156,96 +531,353 @@ button:hover {
 
 <body>
 
-<div class="header">
-  <h1>Teacher Danyeal</h1>
-  <p>Subscription Payment Methods</p>
-</div>
+<!-- =========================
+     HEADER
+========================= -->
 
-<div class="container">
+<header class="header">
 
-  <div class="price-box">
-    <h2>₱99 / Month</h2>
-    <p>Please choose your preferred payment method below.</p>
+  <div class="header-content">
+
+    <div class="portal-icon">
+      🏫
+    </div>
+
+    <h1>Teacher Management Portal</h1>
+
+    <p>Subscription Payment Methods</p>
+
   </div>
 
-  <div class="payment-card">
-    <h3>GCash</h3>
-    <button onclick="openQR('GCASH QR CODE','payment-qr/Gcash.png')">
-      VIEW QR CODE
-    </button>
+</header>
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<main class="container">
+
+
+  <!-- SUBSCRIPTION PRICE -->
+
+  <div class="price-card">
+
+    <div class="price-left">
+
+      <div class="price-icon">
+        💳
+      </div>
+
+      <div class="price-text">
+
+        <h2>Monthly Subscription</h2>
+
+        <p>
+          Select your preferred payment method below.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="price">
+      ₱99 / month
+    </div>
+
   </div>
 
-  <div class="payment-card">
-    <h3>PayPal</h3>
-    <button onclick="openQR('PAYPAL QR CODE','payment-qr/PayPal.png')">
-      VIEW QR CODE
-    </button>
+
+  <!-- ONLINE PAYMENT -->
+
+  <div class="section-heading">
+
+    <h2>Online Payment</h2>
+
+    <p>
+      Choose one of the available online payment options.
+    </p>
+
   </div>
 
-  <div class="payment-card">
-    <h3>Bank / InstaPay</h3>
 
-    <div class="qr-grid">
+  <div class="payment-grid">
 
-      <button onclick="openQR('BPI QR CODE','payment-qr/BPI.png')">
+
+    <!-- GCASH -->
+
+    <div class="payment-card">
+
+      <div class="payment-top">
+
+        <div class="payment-logo">
+          📱
+        </div>
+
+        <div class="payment-info">
+
+          <h3>GCash</h3>
+
+          <span>Mobile wallet payment</span>
+
+        </div>
+
+      </div>
+
+      <button
+        class="view-btn"
+        onclick="openQR('GCASH QR CODE','payment-qr/Gcash.png')">
+
+        VIEW QR CODE
+
+      </button>
+
+    </div>
+
+
+    <!-- PAYPAL -->
+
+    <div class="payment-card">
+
+      <div class="payment-top">
+
+        <div class="payment-logo">
+          💙
+        </div>
+
+        <div class="payment-info">
+
+          <h3>PayPal</h3>
+
+          <span>Online payment</span>
+
+        </div>
+
+      </div>
+
+      <button
+        class="view-btn"
+        onclick="openQR('PAYPAL QR CODE','payment-qr/PayPal.png')">
+
+        VIEW QR CODE
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- BANK -->
+
+  <div class="section-heading">
+
+    <h2>Bank / InstaPay</h2>
+
+    <p>
+      Select your bank to view the corresponding payment QR code.
+    </p>
+
+  </div>
+
+
+  <div class="bank-card">
+
+    <div class="bank-header">
+
+      <div class="bank-icon">
+        🏦
+      </div>
+
+      <div>
+
+        <h3>Bank Transfer</h3>
+
+        <p>
+          Available banks through QR payment
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="bank-grid">
+
+      <button
+        class="bank-btn"
+        onclick="openQR('BPI QR CODE','payment-qr/BPI.png')">
         BPI
       </button>
 
-      <button onclick="openQR('LANDBANK QR CODE','payment-qr/LANDBANK.png')">
+      <button
+        class="bank-btn"
+        onclick="openQR('LANDBANK QR CODE','payment-qr/LANDBANK.png')">
         LANDBANK
       </button>
 
-      <button onclick="openQR('CIMB QR CODE','payment-qr/CIMB.png')">
+      <button
+        class="bank-btn"
+        onclick="openQR('CIMB QR CODE','payment-qr/CIMB.png')">
         CIMB
       </button>
 
-      <button onclick="openQR('UNIONBANK QR CODE','payment-qr/UnionBank.png')">
+      <button
+        class="bank-btn"
+        onclick="openQR('UNIONBANK QR CODE','payment-qr/UnionBank.png')">
         UnionBank
       </button>
 
-      <button onclick="openQR('AUB QR CODE','payment-qr/AUB.png')">
+      <button
+        class="bank-btn"
+        onclick="openQR('AUB QR CODE','payment-qr/AUB.png')">
         AUB
       </button>
 
     </div>
+
   </div>
 
-</div>
 
-<div class="footer">
-  © Teacher Danyeal Private English Class
-</div>
+  <!-- PAYMENT NOTE -->
 
-<div class="modal" id="qrModal" onclick="closeQR(event)">
+  <div class="info-box">
+
+    <div class="info-icon">
+      ℹ️
+    </div>
+
+    <div>
+
+      <strong>Payment Reminder</strong>
+
+      <p>
+        Please make sure that the payment amount is ₱99 for the monthly
+        subscription. Keep your payment reference number or receipt after
+        completing the transaction.
+      </p>
+
+    </div>
+
+  </div>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+  Teacher Management Portal<br>
+
+  <span>Subscription Payment Center</span>
+
+</footer>
+
+
+<!-- =========================
+     QR MODAL
+========================= -->
+
+<div
+  class="modal"
+  id="qrModal"
+  onclick="closeQR(event)">
 
   <div class="modal-content">
 
-    <span class="close" onclick="closeModal()">×</span>
 
-    <h2 id="qrTitle">QR CODE</h2>
+    <span
+      class="close"
+      onclick="closeModal()">
+      ×
+    </span>
 
-    <img id="qrImage" src="" alt="Payment QR Code">
+
+    <div class="modal-label">
+      PAYMENT QR CODE
+    </div>
+
+
+    <h2 id="qrTitle">
+      QR CODE
+    </h2>
+
+
+    <div class="modal-subtitle">
+      Scan the QR code to complete your payment.
+    </div>
+
+
+    <div class="qr-wrapper">
+
+      <img
+        id="qrImage"
+        src=""
+        alt="Payment QR Code">
+
+    </div>
+
 
   </div>
 
 </div>
 
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
 <script>
-function openQR(title, image) {
+
+function openQR(title, image){
+
   document.getElementById("qrTitle").textContent = title;
+
   document.getElementById("qrImage").src = image;
-  document.getElementById("qrModal").style.display = "flex";
+
+  document.getElementById("qrModal").classList.add("show");
+
+  document.body.style.overflow = "hidden";
+
 }
 
-function closeModal() {
-  document.getElementById("qrModal").style.display = "none";
+
+function closeModal(){
+
+  document.getElementById("qrModal").classList.remove("show");
+
+  document.getElementById("qrImage").src = "";
+
+  document.body.style.overflow = "";
+
 }
 
-function closeQR(event) {
-  if (event.target.id === "qrModal") {
+
+function closeQR(event){
+
+  if(event.target.id === "qrModal"){
+
     closeModal();
+
   }
+
 }
+
+
+document.addEventListener("keydown",function(event){
+
+  if(event.key === "Escape"){
+
+    closeModal();
+
+  }
+
+});
+
 </script>
 
 </body>
