@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacher Danyeal - Payment Methods</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #222;
+}
+
+.header {
+  background: #2563eb;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.header p {
+  margin: 10px 0 0;
+  font-size: 16px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.price-box {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+}
+
+.price-box h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #2563eb;
+}
+
+.price-box p {
+  margin-bottom: 0;
+}
+
+.payment-card {
+  background: white;
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+.payment-card h3 {
+  margin-top: 0;
+  font-size: 21px;
+}
+
+.qr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 430px;
+  border-radius: 18px;
+  padding: 25px;
+  text-align: center;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.modal-content h2 {
+  margin-top: 5px;
+}
+
+.modal-content img {
+  width: 100%;
+  max-width: 330px;
+  max-height: 430px;
+  object-fit: contain;
+  margin-top: 10px;
+}
+
+.footer {
+  text-align: center;
+  padding: 25px;
+  color: #666;
+  font-size: 14px;
+}
+
+@media (max-width: 500px) {
+  .header h1 {
+    font-size: 25px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>Teacher Danyeal</h1>
+  <p>Subscription Payment Methods</p>
+</div>
+
+<div class="container">
+
+  <div class="price-box">
+    <h2>₱99 / Month</h2>
+    <p>Please choose your preferred payment method below.</p>
+  </div>
+
+  <div class="payment-card">
+    <h3>GCash</h3>
+    <button onclick="openQR('GCASH QR CODE','payment-qr/Gcash.png')">
+      VIEW QR CODE
+    </button>
+  </div>
+
+  <div class="payment-card">
+    <h3>PayPal</h3>
+    <button onclick="openQR('PAYPAL QR CODE','payment-qr/PayPal.png')">
+      VIEW QR CODE
+    </button>
+  </div>
+
+  <div class="payment-card">
+    <h3>Bank / InstaPay</h3>
+
+    <div class="qr-grid">
+
+      <button onclick="openQR('BPI QR CODE','payment-qr/BPI.png')">
+        BPI
+      </button>
+
+      <button onclick="openQR('LANDBANK QR CODE','payment-qr/LANDBANK.png')">
+        LANDBANK
+      </button>
+
+      <button onclick="openQR('CIMB QR CODE','payment-qr/CIMB.png')">
+        CIMB
+      </button>
+
+      <button onclick="openQR('UNIONBANK QR CODE','payment-qr/UnionBank.png')">
+        UnionBank
+      </button>
+
+      <button onclick="openQR('AUB QR CODE','payment-qr/AUB.png')">
+        AUB
+      </button>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  © Teacher Danyeal Private English Class
+</div>
+
+<div class="modal" id="qrModal" onclick="closeQR(event)">
+
+  <div class="modal-content">
+
+    <span class="close" onclick="closeModal()">×</span>
+
+    <h2 id="qrTitle">QR CODE</h2>
+
+    <img id="qrImage" src="" alt="Payment QR Code">
+
+  </div>
+
+</div>
+
+<script>
+function openQR(title, image) {
+  document.getElementById("qrTitle").textContent = title;
+  document.getElementById("qrImage").src = image;
+  document.getElementById("qrModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("qrModal").style.display = "none";
+}
+
+function closeQR(event) {
+  if (event.target.id === "qrModal") {
+    closeModal();
+  }
+}
+</script>
+
+</body>
+</html>
